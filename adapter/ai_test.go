@@ -30,6 +30,14 @@ func TestNewAIAssistantOperation(t *testing.T) {
 	if len(op.AdditionalProperties) != 0 {
 		t.Fatalf("expected no additional properties, got %v", op.AdditionalProperties)
 	}
+	op.Versions[0] = "mutated"
+	op.Templates[0] = "mutated"
+	if NoneVersion[0] == "mutated" {
+		t.Fatal("expected operation versions to be independent from NoneVersion")
+	}
+	if NoneTemplate[0] == "mutated" {
+		t.Fatal("expected operation templates to be independent from NoneTemplate")
+	}
 }
 
 func TestAIAssistantRequestValidate(t *testing.T) {

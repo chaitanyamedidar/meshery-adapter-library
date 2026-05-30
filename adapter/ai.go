@@ -78,11 +78,14 @@ type AIAssistantError struct {
 
 // NewAIAssistantOperation returns the standard custom operation for AI-capable adapters.
 func NewAIAssistantOperation() *Operation {
+	versions := append([]Version(nil), NoneVersion...)
+	templates := append([]Template(nil), NoneTemplate...)
+
 	return &Operation{
 		Type:        int32(meshes.OpCategory_CUSTOM),
 		Description: "Read-only AI assistant query",
-		Versions:    NoneVersion,
-		Templates:   NoneTemplate,
+		Versions:    versions,
+		Templates:   templates,
 	}
 }
 
